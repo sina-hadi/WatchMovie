@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/whatchmovie/app/src/main/res/drawable-v24/ic_delete_white_24dp.xml" value="0.32314814814814813" />
+        <entry key="..\:/whatchmovie/app/src/main/res/drawable-v24/ic_local_movies_gray.xml" value="0.3828125" />
+        <entry key="..\:/whatchmovie/app/src/main/res/drawable-v24/ic_movie_teal_24dp.xml" value="0.3828125" />
+        <entry key="..\:/whatchmovie/app/src/main/res/drawable-v24/ic_search_black_24dp.xml" value="0.33" />
+        <entry key="..\:/whatchmovie/app/src/main/res/drawable/azx.xml" value="0.3671875" />
+        <entry key="..\:/whatchmovie/app/src/main/res/layout/activity_add_movie.xml" value="0.35104166666666664" />
+        <entry key="..\:/whatchmovie/app/src/main/res/layout/activity_main.xml" value="0.10087719298245613" />
+        <entry key="..\:/whatchmovie/app/src/main/res/layout/activity_search.xml" value="0.2786458333333333" />
+        <entry key="..\:/whatchmovie/app/src/main/res/layout/item_movie_details.xml" value="0.36666666666666664" />
+        <entry key="..\:/whatchmovie/app/src/main/res/layout/item_movie_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/whatchmovie/app/src/main/res/menu/abc.xml" value="0.35104166666666664" />
+        <entry key="..\:/whatchmovie/app/src/main/res/menu/main.xml" value="0.33" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

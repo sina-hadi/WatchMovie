@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">WatchMovie</string>
+    <string name="movies_to_watch">"Movies to Watch"</string>
+    <string name="no_movie">There are currently no movies in your watch list. Tap the button below to get started!</string>
+</resources>
+
