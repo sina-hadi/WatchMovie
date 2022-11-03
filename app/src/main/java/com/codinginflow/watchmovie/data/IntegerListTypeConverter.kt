@@ -1,4 +1,4 @@
-package com.codinginflow.watchmovie.model
+package com.codinginflow.watchmovie.data
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson

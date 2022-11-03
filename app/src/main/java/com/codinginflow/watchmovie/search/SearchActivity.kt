@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.codinginflow.watchmovie.R
 import com.codinginflow.watchmovie.model.RemoteDataSource
-import com.codinginflow.watchmovie.model.TmdbResponse
+import com.codinginflow.watchmovie.data.TmdbResponse
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.annotations.NonNull

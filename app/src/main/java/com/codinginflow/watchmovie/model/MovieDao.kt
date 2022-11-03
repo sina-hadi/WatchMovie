@@ -1,6 +1,7 @@
 package com.codinginflow.watchmovie.model
 
 import androidx.room.*
+import com.codinginflow.watchmovie.data.Movie
 import io.reactivex.Observable
 
 @Dao

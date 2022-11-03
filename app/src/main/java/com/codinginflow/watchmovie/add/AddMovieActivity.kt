@@ -11,7 +11,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import com.codinginflow.watchmovie.R
 import com.codinginflow.watchmovie.model.LocalDataSource
-import com.codinginflow.watchmovie.model.Movie
+import com.codinginflow.watchmovie.data.Movie
 import com.codinginflow.watchmovie.network.RetrofitClient.TMDB_IMAGEURL
 import com.codinginflow.watchmovie.search.SearchActivity
 import com.squareup.picasso.Picasso
@@ -28,7 +28,7 @@ class AddMovieActivity : AppCompatActivity() {
         dataSource = LocalDataSource(application)
     }
 
-    fun setupViews() {
+    private fun setupViews() {
         titleEditText = findViewById(R.id.movie_title)
         releaseDateEditText = findViewById(R.id.movie_release_date)
         movieImageView = findViewById(R.id.movie_imageview)
@@ -71,13 +71,12 @@ class AddMovieActivity : AppCompatActivity() {
         }
     }
 
-    fun showToast(string: String) {
-        Toast.makeText(this@AddMovieActivity, string, Toast.LENGTH_LONG).show()
+    private fun showToast(text: String) {
+        Toast.makeText(this@AddMovieActivity, text, Toast.LENGTH_LONG).show()
     }
 
     companion object {
         const val SEARCH_MOVIE_ACTIVITY_REQUEST_CODE = 2
     }
-
 
 }

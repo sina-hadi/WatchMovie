@@ -10,13 +10,13 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.codinginflow.watchmovie.R
-import com.codinginflow.watchmovie.model.Movie
+import com.codinginflow.watchmovie.data.Movie
 import com.codinginflow.watchmovie.network.RetrofitClient
 import com.squareup.picasso.Picasso
 import java.util.HashSet
 
 
-class MainAdapter(internal var movieList: List<Movie>, internal var context: Context) : RecyclerView.Adapter<MainAdapter.MoviesHolder>() {
+class MainAdapter(internal var movieList: List<Movie>, private var context: Context) : RecyclerView.Adapter<MainAdapter.MoviesHolder>() {
     // HashMap to keep track of which items were selected for deletion
     val selectedMovies = HashSet<Movie>()
 

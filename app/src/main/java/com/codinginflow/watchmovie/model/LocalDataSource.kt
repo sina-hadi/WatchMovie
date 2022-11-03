@@ -1,6 +1,7 @@
 package com.codinginflow.watchmovie.model
 
 import android.app.Application
+import com.codinginflow.watchmovie.data.Movie
 import io.reactivex.Observable
 import kotlin.concurrent.thread
 

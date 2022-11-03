@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.codinginflow.watchmovie.R
 import com.codinginflow.watchmovie.add.AddMovieActivity
 import com.codinginflow.watchmovie.model.LocalDataSource
-import com.codinginflow.watchmovie.model.Movie
+import com.codinginflow.watchmovie.data.Movie
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -22,7 +22,6 @@ import io.reactivex.annotations.NonNull
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var moviesRecyclerView: RecyclerView
@@ -93,7 +92,7 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    fun showToast(str: String) {
+    private fun showToast(str: String) {
         Toast.makeText(this@MainActivity, str, Toast.LENGTH_LONG).show()
     }
 
@@ -114,7 +113,6 @@ class MainActivity : AppCompatActivity() {
             override fun onError(@NonNull e: Throwable) {
                 Log.d(TAG, "Error$e")
                 e.printStackTrace()
-//                displayError("Error fetching movie list")
             }
 
             override fun onComplete() {
@@ -145,6 +143,5 @@ class MainActivity : AppCompatActivity() {
     companion object {
         const val ADD_MOVIE_ACTIVITY_REQUEST_CODE = 1
     }
-
 
 }

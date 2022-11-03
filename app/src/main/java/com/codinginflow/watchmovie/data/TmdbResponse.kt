@@ -1,4 +1,4 @@
-package com.codinginflow.watchmovie.model
+package com.codinginflow.watchmovie.data
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

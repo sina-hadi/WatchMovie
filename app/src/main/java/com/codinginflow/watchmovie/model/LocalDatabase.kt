@@ -5,6 +5,8 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.codinginflow.watchmovie.data.IntegerListTypeConverter
+import com.codinginflow.watchmovie.data.Movie
 
 
 @Database(entities = [Movie::class], version = 1)

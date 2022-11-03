@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.codinginflow.watchmovie.R
-import com.codinginflow.watchmovie.model.Movie
+import com.codinginflow.watchmovie.data.Movie
 import com.squareup.picasso.Picasso
 
 
