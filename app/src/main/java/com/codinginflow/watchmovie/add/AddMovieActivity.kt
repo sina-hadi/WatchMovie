@@ -5,10 +5,14 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
-import android.view.View
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import com.codinginflow.watchmovie.Constant.Companion.EXTRA_POSTER_PATH
+import com.codinginflow.watchmovie.Constant.Companion.EXTRA_RELEASE_DATE
+import com.codinginflow.watchmovie.Constant.Companion.EXTRA_TITLE
+import com.codinginflow.watchmovie.Constant.Companion.SEARCH_QUERY
 import com.codinginflow.watchmovie.R
 import com.codinginflow.watchmovie.model.LocalDataSource
 import com.codinginflow.watchmovie.data.Movie
@@ -25,7 +29,15 @@ class AddMovieActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_movie)
         setupViews()
+        setProperties()
         dataSource = LocalDataSource(application)
+
+        findViewById<ImageView>(R.id.search_button).setOnClickListener {
+            goToSearchMovieActivity()
+        }
+        findViewById<Button>(R.id.addMovieButton).setOnClickListener {
+            onClickAddMovie()
+        }
     }
 
     private fun setupViews() {
@@ -34,16 +46,14 @@ class AddMovieActivity : AppCompatActivity() {
         movieImageView = findViewById(R.id.movie_imageview)
     }
 
-    fun goToSearchMovieActivity(v: View) {
+    private fun goToSearchMovieActivity() {
         val title = titleEditText.text.toString()
         val intent = Intent(this@AddMovieActivity, SearchActivity::class.java)
-        intent.putExtra(SearchActivity.SEARCH_QUERY, title)
-        startActivityForResult(intent,
-            SEARCH_MOVIE_ACTIVITY_REQUEST_CODE
-        )
+        intent.putExtra(SEARCH_QUERY, title)
+        startActivity(intent)
     }
 
-    fun onClickAddMovie(v: View) {
+    private fun onClickAddMovie() {
 
         if (TextUtils.isEmpty(titleEditText.text)) {
             showToast("Movie title cannot be empty")
@@ -60,23 +70,18 @@ class AddMovieActivity : AppCompatActivity() {
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
+    private fun setProperties() {
 
         this@AddMovieActivity.runOnUiThread {
-            titleEditText.setText(data?.getStringExtra(SearchActivity.EXTRA_TITLE))
-            releaseDateEditText.setText(data?.getStringExtra(SearchActivity.EXTRA_RELEASE_DATE))
-            movieImageView.tag = data?.getStringExtra(SearchActivity.EXTRA_POSTER_PATH)
-            Picasso.get().load(TMDB_IMAGEURL + data?.getStringExtra(SearchActivity.EXTRA_POSTER_PATH)).into(movieImageView)
+            titleEditText.setText(intent.getStringExtra(EXTRA_TITLE))
+            releaseDateEditText.setText(intent.getStringExtra(EXTRA_RELEASE_DATE))
+            movieImageView.tag = intent.getStringExtra(EXTRA_POSTER_PATH)
+            Picasso.get().load(TMDB_IMAGEURL + intent.getStringExtra(EXTRA_POSTER_PATH)).into(movieImageView)
         }
     }
 
     private fun showToast(text: String) {
         Toast.makeText(this@AddMovieActivity, text, Toast.LENGTH_LONG).show()
-    }
-
-    companion object {
-        const val SEARCH_MOVIE_ACTIVITY_REQUEST_CODE = 2
     }
 
 }

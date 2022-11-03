@@ -1,25 +1,34 @@
 package com.codinginflow.watchmovie.search
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.codinginflow.watchmovie.Constant.Companion.EXTRA_POSTER_PATH
+import com.codinginflow.watchmovie.Constant.Companion.EXTRA_RELEASE_DATE
+import com.codinginflow.watchmovie.Constant.Companion.EXTRA_TITLE
 import com.codinginflow.watchmovie.R
+import com.codinginflow.watchmovie.add.AddMovieActivity
 import com.codinginflow.watchmovie.data.Movie
+import com.codinginflow.watchmovie.network.RetrofitClient.TMDB_IMAGEURL
 import com.squareup.picasso.Picasso
 
 
-class SearchAdapter(var movieList: List<Movie>, var context: Context, var listener: SearchActivity.RecyclerItemListener) : RecyclerView.Adapter<SearchAdapter.SearchMoviesHolder>() {
+class SearchAdapter(
+    private var movieList: List<Movie>,
+    var context: Context
+    ) : RecyclerView.Adapter<SearchAdapter.SearchMoviesHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchMoviesHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_movie_details, parent, false)
 
-        val viewHolder = SearchMoviesHolder(view)
-        view.setOnClickListener { v -> listener.onItemClick(v, viewHolder.adapterPosition) }
-        return viewHolder
+        return SearchMoviesHolder(view)
     }
 
     override fun onBindViewHolder(holder: SearchMoviesHolder, position: Int) {
@@ -29,16 +38,18 @@ class SearchAdapter(var movieList: List<Movie>, var context: Context, var listen
         holder.overviewTextView.text = movieList[position].overview
 
         if (movieList[position].posterPath != null) {
-            Picasso.get().load("https://image.tmdb.org/t/p/w500/" + movieList[position].posterPath).into(holder.movieImageView)
+            Picasso.get()
+                .load(TMDB_IMAGEURL + movieList[position].posterPath)
+                .into(holder.movieImageView)
+        }
+
+        holder.constraintLayout.setOnClickListener {
+            setAddActivity(movieList[position])
         }
     }
 
     override fun getItemCount(): Int {
         return movieList.size
-    }
-
-    fun getItemAtPosition(pos: Int): Movie {
-        return movieList[pos]
     }
 
     inner class SearchMoviesHolder(v: View) : RecyclerView.ViewHolder(v) {
@@ -47,11 +58,16 @@ class SearchAdapter(var movieList: List<Movie>, var context: Context, var listen
         var overviewTextView: TextView = v.findViewById(R.id.overview_overview)
         var releaseDateTextView: TextView = v.findViewById(R.id.release_date_textview)
         var movieImageView: ImageView = v.findViewById(R.id.movie_imageview)
+        val constraintLayout: ConstraintLayout = v.findViewById(R.id.detailConstraintLayout)
 
-        init {
-            v.setOnClickListener { v: View ->
-                listener.onItemClick(v, adapterPosition)
-            }
-        }
+    }
+
+    private fun setAddActivity(movie: Movie) {
+
+        val intent = Intent(context, AddMovieActivity::class.java)
+        intent.putExtra(EXTRA_TITLE, movie.title)
+        intent.putExtra(EXTRA_RELEASE_DATE, movie.getReleaseYearFromDate())
+        intent.putExtra(EXTRA_POSTER_PATH, movie.posterPath)
+        context.startActivity(intent)
     }
 }

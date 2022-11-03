@@ -44,10 +44,10 @@
                     style="?android:buttonBarButtonStyle"
                     android:layout_width="57dp"
                     android:layout_height="match_parent"
-                    android:onClick="goToSearchMovieActivity"
                     android:paddingBottom="5dp"
                     app:srcCompat="@drawable/azx"
                     tools:ignore="SpeakableTextPresentCheck" />
+
             </LinearLayout>
 
 
@@ -68,17 +68,17 @@
 
             <ImageView
                 android:id="@+id/movie_imageview"
-                android:layout_marginTop="@dimen/dp_double"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_double" />
 
-            <com.google.android.material.button.MaterialButton
+            <Button
+                android:id="@+id/addMovieButton"
+                style="@style/Widget.MaterialComponents.Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_double"
-                android:onClick="onClickAddMovie"
-                style="@style/Widget.MaterialComponents.Button"
-                android:text="Add Movie"/>
+                android:text="Add Movie" />
 
         </LinearLayout>
     </ScrollView>

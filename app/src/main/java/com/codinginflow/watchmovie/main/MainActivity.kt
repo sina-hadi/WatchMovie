@@ -35,7 +35,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         setupViews()
     }
 
@@ -87,9 +86,7 @@ class MainActivity : AppCompatActivity() {
 
     fun goToAddMovieActivity(view: android.view.View) {
         val myIntent = Intent(this@MainActivity, AddMovieActivity::class.java)
-        startActivityForResult(myIntent,
-            ADD_MOVIE_ACTIVITY_REQUEST_CODE
-        )
+        startActivity(myIntent)
     }
 
     private fun showToast(str: String) {
@@ -138,10 +135,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         return super.onOptionsItemSelected(item)
-    }
-
-    companion object {
-        const val ADD_MOVIE_ACTIVITY_REQUEST_CODE = 1
     }
 
 }
