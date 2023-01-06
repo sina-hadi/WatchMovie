@@ -43,6 +43,9 @@ class SearchActivity : AppCompatActivity() {
 
         val intent = intent
         query = intent.getStringExtra(SEARCH_QUERY).toString()
+        if (query.isEmpty()) {
+            query = "A"
+        }
 
         setupViews()
     }
@@ -111,14 +114,12 @@ class SearchActivity : AppCompatActivity() {
         }
     }
 
-    fun showToast(string: String) {
+    private fun showToast(string: String) {
         Toast.makeText(this@SearchActivity, string, Toast.LENGTH_LONG).show()
     }
 
     fun displayError(string: String) {
         showToast(string)
     }
-
-
 
 }

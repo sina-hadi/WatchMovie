@@ -8,12 +8,11 @@ import androidx.room.TypeConverters
 import com.codinginflow.watchmovie.data.IntegerListTypeConverter
 import com.codinginflow.watchmovie.data.Movie
 
-
 @Database(entities = [Movie::class], version = 1)
 @TypeConverters(IntegerListTypeConverter::class)
 abstract class LocalDatabase : RoomDatabase() {
 
-    abstract fun movieDao() : MovieDao
+    abstract fun movieDao(): MovieDao
 
     companion object {
         private val lock = Any()

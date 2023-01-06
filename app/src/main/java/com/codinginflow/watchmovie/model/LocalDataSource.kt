@@ -5,7 +5,7 @@ import com.codinginflow.watchmovie.data.Movie
 import io.reactivex.Observable
 import kotlin.concurrent.thread
 
-open class LocalDataSource (application: Application) {
+open class LocalDataSource(application: Application) {
 
     private val movieDao: MovieDao
     open val allMovies: Observable<List<Movie>>

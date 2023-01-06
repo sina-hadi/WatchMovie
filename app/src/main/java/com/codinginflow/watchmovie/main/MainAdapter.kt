@@ -9,14 +9,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.codinginflow.watchmovie.Constant.Companion.TMDB_IMAGEURL
 import com.codinginflow.watchmovie.R
 import com.codinginflow.watchmovie.data.Movie
-import com.codinginflow.watchmovie.network.RetrofitClient
 import com.squareup.picasso.Picasso
 import java.util.HashSet
 
+class MainAdapter(internal var movieList: List<Movie>, private var context: Context) :
+    RecyclerView.Adapter<MainAdapter.MoviesHolder>() {
 
-class MainAdapter(internal var movieList: List<Movie>, private var context: Context) : RecyclerView.Adapter<MainAdapter.MoviesHolder>() {
     // HashMap to keep track of which items were selected for deletion
     val selectedMovies = HashSet<Movie>()
 
@@ -29,9 +30,15 @@ class MainAdapter(internal var movieList: List<Movie>, private var context: Cont
         holder.titleTextView.text = movieList[position].title
         holder.releaseDateTextView.text = movieList[position].releaseDate
         if (movieList[position].posterPath.equals("")) {
-            holder.movieImageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_local_movies_gray))
+            holder.movieImageView.setImageDrawable(
+                ContextCompat.getDrawable(
+                    context,
+                    R.drawable.ic_local_movies_gray
+                )
+            )
         } else {
-            Picasso.get().load(RetrofitClient.TMDB_IMAGEURL + movieList[position].posterPath).into(holder.movieImageView)
+            Picasso.get().load(TMDB_IMAGEURL + movieList[position].posterPath)
+                .into(holder.movieImageView)
         }
     }
 
@@ -44,7 +51,7 @@ class MainAdapter(internal var movieList: List<Movie>, private var context: Cont
         internal var titleTextView: TextView
         internal var releaseDateTextView: TextView
         internal var movieImageView: ImageView
-        internal var checkBox: CheckBox
+        private var checkBox: CheckBox
 
         init {
             titleTextView = v.findViewById(R.id.title_textview)
@@ -58,7 +65,7 @@ class MainAdapter(internal var movieList: List<Movie>, private var context: Cont
                     selectedMovies.add(movieList[adapterPosition])
                 } else {
                     checkBox.isChecked = false
-                    selectedMovies.add(movieList[adapterPosition])
+                    selectedMovies.remove(movieList[adapterPosition])
                 }
             }
         }

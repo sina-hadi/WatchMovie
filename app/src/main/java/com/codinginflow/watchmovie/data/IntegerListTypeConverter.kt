@@ -11,8 +11,8 @@ class IntegerListTypeConverter {
 
         val gson = Gson()
 
-        if (data == null || data.isEmpty() || data.equals("null")) {
-            return mutableListOf<Int>()
+        if (data == null || data.isEmpty() || data == "null") {
+            return mutableListOf()
         }
 
         val listType = object : TypeToken<List<Int>>() {

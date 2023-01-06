@@ -24,13 +24,14 @@ import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 
 class MainActivity : AppCompatActivity() {
+
     private lateinit var moviesRecyclerView: RecyclerView
     private var adapter: MainAdapter? = null
     private lateinit var fab: FloatingActionButton
     private lateinit var noMoviesLayout: LinearLayout
     private lateinit var dataSource: LocalDataSource
     private val compositeDisposable = CompositeDisposable()
-    private val TAG = "MainActivity"
+    private val tag = "MainActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,8 +60,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun displayMovies(movieList: List<Movie>?) {
-        if (movieList == null || movieList.isEmpty()) {
-            Log.d(TAG, "No movies to display")
+        if (movieList.isNullOrEmpty()) {
+            Log.d(tag, "No movies to display")
             moviesRecyclerView.visibility = View.INVISIBLE
             noMoviesLayout.visibility = View.VISIBLE
         } else {
@@ -108,16 +109,14 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onError(@NonNull e: Throwable) {
-                Log.d(TAG, "Error$e")
+                Log.d(tag, "Error$e")
                 e.printStackTrace()
             }
 
             override fun onComplete() {
-                Log.d(TAG, "Completed")
+                Log.d(tag, "Completed")
             }
         }
-
-
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.deleteMenuItem) {
@@ -135,6 +134,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finishAffinity()
     }
 
 }

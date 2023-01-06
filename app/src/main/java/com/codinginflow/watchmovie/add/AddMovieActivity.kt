@@ -13,18 +13,22 @@ import com.codinginflow.watchmovie.Constant.Companion.EXTRA_POSTER_PATH
 import com.codinginflow.watchmovie.Constant.Companion.EXTRA_RELEASE_DATE
 import com.codinginflow.watchmovie.Constant.Companion.EXTRA_TITLE
 import com.codinginflow.watchmovie.Constant.Companion.SEARCH_QUERY
+import com.codinginflow.watchmovie.Constant.Companion.TMDB_IMAGEURL
 import com.codinginflow.watchmovie.R
 import com.codinginflow.watchmovie.model.LocalDataSource
 import com.codinginflow.watchmovie.data.Movie
-import com.codinginflow.watchmovie.network.RetrofitClient.TMDB_IMAGEURL
+import com.codinginflow.watchmovie.main.MainActivity
+
 import com.codinginflow.watchmovie.search.SearchActivity
 import com.squareup.picasso.Picasso
 
 class AddMovieActivity : AppCompatActivity() {
+
     private lateinit var titleEditText: EditText
     private lateinit var releaseDateEditText: EditText
     private lateinit var movieImageView: ImageView
     private lateinit var dataSource: LocalDataSource
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_movie)
@@ -65,7 +69,8 @@ class AddMovieActivity : AppCompatActivity() {
             val movie = Movie(title = title, releaseDate = releaseDate, posterPath = posterPath)
             dataSource.insert(movie)
 
-            setResult(Activity.RESULT_OK)
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
             finish()
         }
     }
